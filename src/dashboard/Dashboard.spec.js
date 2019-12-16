@@ -19,7 +19,9 @@ test('Gate defaults to open', ()=> {
 test('Gate cannot be closed or opened if it is locked', () => {
     const { getByText, getByTestId } = render(<Dashboard />);
     const gateButton = getByTestId('gateButton');
+    expect(gateButton).toHaveTextContent(/close gate/i);
     fireEvent.click(gateButton);
+    expect(gateButton).toHaveTextContent(/open gate/i);
     const lockButton = getByText(/lock gate/i);
     fireEvent.click(lockButton);
     getByText(/locked/i);
